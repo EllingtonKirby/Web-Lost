@@ -1,0 +1,19 @@
+{
+  "name": "RSS Fetcher",
+  "version": "0.1",
+
+  "description": "Keep up with the latest from [insert web site here].",
+  "icons": { "16" : "images/icon.png",
+                        "48" : "images/48.png",
+                        "128" : "images/128.png"},
+  "homepage_url": "http://insert_web_site_here.com/",
+        "background_page": "background.html",
+        "permissions": [
+          "http://insert_base_rss_url_here.com/*"
+        ],
+        "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_title": "[INSERT WEB SITE NAME HERE] Fetcher",
+    "default_popup": "popup.html"
+  }
+}
