@@ -12,7 +12,8 @@
     "default_icon": "Sample.png"
   },
   "background":{
-    "scripts":["thirdParty/jquery-2.0.2.js","scripts/background.js","scripts/future.js","scrips/oilChange.js"],
+    "scripts":["third party/jquery-2.1.3.min.js","scripts/background.js","scripts/future.js","scripts/oilChange.js"],
     "persistent":false
   }
 }
+

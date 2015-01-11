@@ -9,7 +9,8 @@ function findText(element) {
         if (nodes[n].nodeType == Node.TEXT_NODE) {
             matches = findReplacements(nodes[n], oilPrice);
             for(key in matches)
-                nodes[n].textContent = nodes[n].textContent.replace(key, matches[key]);
+                var text = matches[key] + " Barrels of Oil";
+                nodes[n].textContent = nodes[n].textContent.replace(key, text);
         } else {
             findText(nodes[n]);
         }
@@ -18,7 +19,7 @@ function findText(element) {
 
 function findReplacements(node, oilPrice){
     var r = '\$(([1-9]\d{0,2}(,\d{3})*)|(([1-9]\d*)?\d))(\.\d\d)?$';
-    var matches = [];
+    var matches = {};
     while (match = r.exec(node.textContent)) {
         var matchedVal = node.textContent.slice(match.index, r.lastIndex);
         var numVal = parseFloat(matchedVal);
