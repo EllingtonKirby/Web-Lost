@@ -3,7 +3,7 @@
  */
 function getData() {
     var url = "http://query.yahooapis.com/v1/public/yql";
-    var symbol = 'CLG15.NYM';
+    var symbol = "CLG15.NYM";
     var data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + symbol + "')");
     $.getJSON(url, 'q=' + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env")
         .done(function (data)
@@ -19,16 +19,18 @@ function getData() {
             return false;
         });
 }
+
 function findText(element, oilPrice) {
     if (!element) element = document.body;
     var nodes = element.childNodes;
-    console.log("nodes: " + nodes);
+    console.log("oil: " + oilPrice);
     for (var n=0; n<nodes.length; n++) {
         if (nodes[n].nodeType == Node.TEXT_NODE) {
             var matches = findReplacements(nodes[n], oilPrice);
-            console.log("found a match");
+            console.log(nodes[n]);
             for(var key in matches)
                 var text = matches[key] + " Barrels of Oil ";
+                //console.log(matches[key]);
                 //console.log(key);
                 nodes[n].textContent = nodes[n].textContent.replace(key, text);
         } else {
@@ -36,14 +38,17 @@ function findText(element, oilPrice) {
         }
     }
 }
+
 function findReplacements(node, oilPrice){
-    var r = /\$(([1-9]\d{0,2}(,\d{3})*)|(([1-9]\d*)?\d))(\.\d\d)?$/;
+    var r = /\$(([1-9]\d{0,2}(,\d{3})*)|(([1-9]\d*)?\d))(\.\d\d)?/;
+    //problem with this regex!!!!!! won't parse $100000000 without commas
     var matches = {};
-    console.log(node.textContent);
+    //console.log(node.textContent);
     while (match = r.exec(node.textContent)) {
-        var matchedVal = node.textContent.slice(match.index, r.lastIndex);
-        console.log(matchedVal);
+        var matchedVal = node.textContent.slice(match.index + 1, r.lastIndex);
+        console.log("matched value: " + matchedVal);
         var numVal = parseFloat(matchedVal);
+        console.log("num: " + numVal);
         matches[matchedVal] = numVal/oilPrice;
     }
     return matches;
