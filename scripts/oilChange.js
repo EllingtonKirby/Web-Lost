@@ -1,6 +1,7 @@
 /**
  * Created by Ellioc on 1/9/2015.
  */
+ <script src="thirdParty/jquery-2.1.3.min.js">
 function getData() {
     var url = "http://query.yahooapis.com/v1/public/yql";
     var symbol = "CLG15.NYM";
@@ -55,3 +56,4 @@ function findReplacements(node, oilPrice){
 }
 
 getData();
+</script>
